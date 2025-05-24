@@ -48,14 +48,7 @@ fn main() -> anyhow::Result<()> {
         }
     }
 
-    loop {
-        let readed = file.read(&mut buffer)?;
-        if readed == 0 {
-            break; // EOF
-        }
-        let buffer = &buffer[..readed];
-        output.write_all(buffer)?;
-    }
+    io::copy(&mut file, &mut io::stdout())?;
 
     Ok(())
 }
