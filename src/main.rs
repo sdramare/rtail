@@ -48,7 +48,7 @@ fn main() -> anyhow::Result<()> {
         }
     }
 
-    io::copy(&mut file, &mut io::stdout())?;
+    io::copy(&mut file, &mut output)?;
 
     Ok(())
 }
