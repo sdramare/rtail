@@ -17,7 +17,7 @@ fn main() -> anyhow::Result<()> {
 
     let mut file: std::fs::File = std::fs::File::open(args.file_name)?;
 
-    const BUFFER_SIZE: usize = 1024 * 8;
+    const BUFFER_SIZE: usize = 1024 * 64; // modern CPU L1 cache size is about 64KB
     let mut buffer = [0u8; BUFFER_SIZE];
     if file.metadata()?.len() > BUFFER_SIZE as u64 {
         file.seek(SeekFrom::End(-(BUFFER_SIZE as i64)))?;
